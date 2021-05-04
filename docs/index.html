@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<link rel="icon" href="https://img.icons8.com/officel/16/000000/worker-with-roadblock.png" />
+
+<head>
+  <title>Edmonton Traffic Disruptions Live Map</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+  <script type="module" src="mapscript.js"></script>
+
+
+  <link rel="stylesheet" href="../assets/style.css" type="text/css" media="all" />
+
+  <script charset="utf-8" src="https://d3js.org/d3.v4.min.js"></script>
+
+</head>
+
+<body onload="myFunc()">
+
+  <div id="map"></div>
+
+  <div id="title">
+    <h2>Edmonton Traffic Disruptions Live Map</h2>
+    <p class="credit">
+      Data is provided by the City of Edmonton
+      <a href="https://data.edmonton.ca/Transportation/Traffic-Disruptions/k4tx-5k8p"> API</a> and is updated on an
+      automated basis<br>
+      <br><i>Please hover over a circle to learn more about that disruption</i></p>
+  </div>
+
+  <div id="legend">
+    <script>
+      function myFunc() {
+        var legend = document.getElementById("legend");
+
+        var tickContainer = document.createElement("div");
+        tickContainer.setAttribute('class', 'labelContainer');
+
+        var labelContainer = document.createElement("div");
+        labelContainer.setAttribute('class', 'labelContainer');
+
+        document.body.appendChild(tickContainer);
+        document.body.appendChild(labelContainer);
+
+        var legendColours = document.createElement('div');
+        var jsColours = ["#ff0000", "#ffff66", "#33cc33"];
+        var colours = '(' + jsColours.join() + ')';
+
+
+
+        style = 'display: inline-block; height: ' + jsColours.length * 20 + 'px; width: 10px;';
+        style += 'background: ' + jsColours[1] + ';';
+        style += 'background: -webkit-linear-gradient' + colours + ';'
+        style += 'background: -o-linear-gradient' + colours + ';'
+        style += 'background: -moz-linear-gradient' + colours + ';'
+        style += 'background: linear-gradient' + colours + ';'
+
+        legendColours.setAttribute('style', style);
+        legend.appendChild(legendColours);
+
+        for (var i = 0; i < jsColours.length; i++) {
+          var tickVal = 'text-align: left; color: #00000; font-size: 12px; height: 20px;';
+
+          var divTicks = document.createElement('div');
+          var divVal = document.createElement('div');
+
+
+          divTicks.setAttribute('style', tickVal);
+          divTicks.innerHTML = '-';
+          tickContainer.appendChild(divTicks);
+
+          divVal.setAttribute('style', tickVal);
+          if (i == 0) {
+            divVal.innerHTML =
+              "The disruption is now due to be completed or has gone beyond the scheduled completion date";
+          } else if (i == jsColours.length - 1) {
+            divVal.innerHTML = (i * 7) + ' days or more until the scheduled completion date';
+          } else {
+            divVal.innerHTML = (i * 7) + ' to ' + ((i * 7 * 2) - 1) + ' days until the scheduled completion date';
+          }
+          labelContainer.appendChild(divVal);
+        }
+
+        legend.appendChild(tickContainer);
+        legend.appendChild(labelContainer);
+      };
+    </script>
+  </div>
+
+
+
+</body>
+
+</html>
