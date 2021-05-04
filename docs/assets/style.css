@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#title {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 0.5em;
+  margin-top: 15px;
+  margin-left: 15px;
+  opacity: 0.85;
+}
+
+#title h2 {
+  line-height: 24px;
+  margin: 0;
+}
+
+#title p.credit {
+  margin: 10px 0 0 0;
+  line-height: 15px;
+  padding: 0;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#legend {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 0.5em;
+  margin-top: 120px;
+  margin-left: 15px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  display: inline-flex;
+  opacity: 0.85;
+}
+.labelContainer {
+  padding-left: 4px;
+  height: auto;
+  display: inline-block;
+}
